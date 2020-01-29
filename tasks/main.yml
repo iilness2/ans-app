@@ -21,6 +21,8 @@
 - name: Deleting Apache Default
   when: default.stat.exists == True
   file: path=/etc/apache2/site-enabled/000-default.conf state=absent
+  become: true
+  become_user: root
 
 - name: Create symbolic link
   file:
