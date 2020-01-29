@@ -1,8 +1,15 @@
 ---
-- name: example copying file with owner and permissions
+- name: copying example file app
   copy:
     src: index.php
     dest: /var/www/html/index.php
+  become: true
+  become_user: root
+
+- name: copying app conf                       
+  copy:
+    src: app.conf
+    dest: /etc/apache2/sites-available/app.conf
   become: true
   become_user: root
 
