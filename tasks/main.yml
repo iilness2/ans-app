@@ -1,7 +1,7 @@
 ---
 - name: copying example file app
   copy:
-    src: index.php
+    src: *
     dest: /var/www/html/index.php
   become: true
   become_user: root
@@ -21,7 +21,7 @@
 - name: Deleting Apache Config Default
   when: default.stat.exists == True
   file: 
-    path: /etc/apache2/site-enabled/000-default.conf 
+    path: /etc/apache2/site-enabled/*
     state: absent
     force: yes
   become: true
