@@ -23,6 +23,7 @@
   file: 
     path: /etc/apache2/site-enabled/000-default.conf 
     state: absent
+    force: yes
   become: true
   become_user: root
 
