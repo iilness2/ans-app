@@ -1,0 +1,23 @@
+---
+- name: example copying file with owner and permissions
+  copy:
+    src: index.php
+    dest: /var/www/html/index.php
+  become: true
+  become_user: root
+
+- name: check file exists.
+  stat:
+    path: /etc/apache2/sites-enabled/000-default.conf
+  register: default
+
+- name: Deleting Apache Default
+  when: default.stat.exists == True
+  file: path=/etc/nginx/site-enabled/000-default.conf state=absent
+
+- name: Create symbolic link
+  file:
+    src: "/etc/apache2/sites-available/app.conf"
+    dest: "/etc/apache2/sites-enabled/app.conf"
+    state: link
+  notify: restart apache2
