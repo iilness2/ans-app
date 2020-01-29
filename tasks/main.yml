@@ -18,9 +18,19 @@
     path: /etc/apache2/sites-enabled/000-default.conf
   register: default
 
-- name: Deleting Apache Default
+- name: Deleting Apache Config Default
   when: default.stat.exists == True
-  file: path=/etc/apache2/site-enabled/000-default.conf state=absent
+  file: 
+    path: /etc/apache2/site-enabled/000-default.conf 
+    state: absent
+  become: true
+  become_user: root
+
+- name: Deleting Apache File Default
+  when: default.stat.exists == True
+  file:
+    path: /var/www/html/index.html 
+    state: absent
   become: true
   become_user: root
 
