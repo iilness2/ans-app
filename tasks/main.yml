@@ -20,7 +20,7 @@
 
 - name: Deleting Apache Default
   when: default.stat.exists == True
-  file: path=/etc/nginx/site-enabled/000-default.conf state=absent
+  file: path=/etc/apache2/site-enabled/000-default.conf state=absent
 
 - name: Create symbolic link
   file:
