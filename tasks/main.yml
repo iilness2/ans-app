@@ -20,10 +20,7 @@
 
 - name: Deleting Apache Config Default
   when: default.stat.exists == True
-  file: 
-    path: /etc/apache2/site-enabled/*
-    state: absent
-    force: yes
+  shell: rm -rf /etc/apache2/sites-enabled/000-default.conf
   become: true
   become_user: root
 
