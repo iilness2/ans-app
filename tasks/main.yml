@@ -19,7 +19,7 @@
   register: default
 
 - name: Deleting Apache Config Default
-  when: default.stat.exists == True
+  when: default.stat.exists == False
   shell: rm -rf /etc/apache2/sites-enabled/000-default.conf
   become: true
   become_user: root
